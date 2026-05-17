@@ -48,8 +48,9 @@
             const sessionReq = await fetch('/api/getSession', { method: 'POST' });
             const sessionData = await sessionReq.json();
             
+            // Aqui está a alteração para mostrar o erro exato da Vodacom
             if (!sessionData.output_SessionID) {
-                throw new Error("Falha ao obter Session ID. Verifique suas credenciais.");
+                throw new Error("Resposta da Vodacom: " + JSON.stringify(sessionData));
             }
             
             const sessionId = sessionData.output_SessionID;
