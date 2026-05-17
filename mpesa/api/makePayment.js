@@ -19,20 +19,19 @@ export default async function handler(req, res) {
             Buffer.from(sessionId)
         ).toString('base64');
 
-        // PAYLOAD ATUALIZADO PARA MOÇAMBIQUE
         const payload = {
             input_Amount: "10",
-            input_Country: "MOZ", // Moçambique
-            input_Currency: "MZN", // Meticais
-            input_CustomerMSISDN: telefone, // Número recebido do site
-            input_ServiceProviderCode: "000000", // Shortcode de testes
+            input_Country: "MOZ", // País: Moçambique
+            input_Currency: "MZS", // Moeda: MZS conforme a documentação
+            input_CustomerMSISDN: telefone, 
+            input_ServiceProviderCode: "000000", // Código da loja de testes da M-Pesa
             input_ThirdPartyConversationID: "asv02e5958774f7ba228d83d0d689761",
             input_TransactionReference: "T1234C",
             input_PurchasedItemsDesc: "Sapatos"
         };
 
-        // URL ATUALIZADA PARA MOÇAMBIQUE (vodacomMZ)
-        const response = await fetch('https://openapi.m-pesa.com/sandbox/ipg/v2/vodacomMZ/c2bPayment/multiStage/', {
+        // URL corrigida para vodacomMOZ
+        const response = await fetch('https://openapi.m-pesa.com/sandbox/ipg/v2/vodacomMOZ/c2bPayment/multiStage/', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${encryptedSessionId}`,
